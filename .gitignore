@@ -38,6 +38,9 @@ ScaffoldingReadMe.txt
 
 # dotenv environment variables file
 .env
+appsettings.Development.json
+secrets.json
+
 
 # Others
 ~$*
@@ -57,3 +60,5 @@ TestResult.xml
 nunit-*.xml
 /.vs
 /.idea
+/appsettings.json
+/appsettings.json
