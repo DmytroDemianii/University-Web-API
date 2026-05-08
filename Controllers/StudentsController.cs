@@ -17,9 +17,16 @@ namespace UniversityWebAPI.Controllers
         }
 
         [HttpGet(Name = "GetStudents")]
-        public async Task<ActionResult<IEnumerable<StudentDto>>> GetStudents()
+        public async Task<ActionResult<IEnumerable<StudentDto>>> GetStudents([FromQuery] int? groupId)
         {
-            var students = await _context.Students
+            var query = _context.Students.AsQueryable();
+
+            if (groupId.HasValue)
+            {
+                query = query.Where(s => s.GroupId == groupId.Value);
+            }
+
+            var students = await query
                 .Include(s => s.Group)
                 .Select(s => new StudentDto
                 {

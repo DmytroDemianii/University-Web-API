@@ -5,16 +5,20 @@ namespace UniversityWebAPI.Data
 {
     public class UniversityContext : DbContext
     {
+        public UniversityContext(DbContextOptions<UniversityContext> options)
+            : base(options)
+        {
+        }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
 
-        private string connectionString = Environment.GetEnvironmentVariable("DefaultConnection");
+        //private string connectionString = Environment.GetEnvironmentVariable("DefaultConnection");
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlServer(connectionString);
+            
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
